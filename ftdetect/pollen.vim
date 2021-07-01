@@ -1,8 +1,4 @@
 function! PollenDetectFiletype(filename) abort
-  " HACK: new file resets did_filetype()
-  " ignore old filetype, probably pascal or some junk
-  new | bdelete
-
   " TODO: support "_" escaping convention
   " … https://docs.racket-lang.org/pollen/File_formats.html#%28part._.Escaping_output-file_extensions_within_source-file_names%29
   let without_pollen_ext = fnamemodify(a:filename, ':r')
@@ -10,6 +6,10 @@ function! PollenDetectFiletype(filename) abort
     " not a pollen file
     return
   endif
+
+  " HACK: new file resets did_filetype()
+  " ignore old filetype, probably pascal or some junk
+  new | bdelete
 
   " HACK: ignore conf (#lang line triggers it sometimes)
   " :view +/setf\ FALLBACK\ conf $VIMRUNTIME/filetype.vim

@@ -29,10 +29,10 @@ endfunction
 " TODO: support "#lang" overriding
 " … https://docs.racket-lang.org/pollen/File_formats.html#%28part._.Source_formats%29
 
-autocmd BufNewFile,BufRead *.pp call PollenDetectFiletype(expand("<afile>"))
-autocmd BufNewFile,BufRead *.pmd set filetype=markdown.pollen
-autocmd BufNewFile,BufRead *.pm set filetype=pollen
+autocmd BufNewFile,BufRead *.*.pp call PollenDetectFiletype(expand("<afile>"))
+autocmd BufNewFile,BufRead *.*.pmd set filetype=markdown.pollen
+autocmd BufNewFile,BufRead *.*.pm set filetype=pollen
 autocmd BufNewFile,BufRead *.ptree set filetype=pagetree
 " technically, the null extension is for templates and for static files, but
 " let's add pollen anyway
-autocmd BufNewFile,BufRead *.p call PollenDetectFiletype(expand("<afile>"))
+autocmd BufNewFile,BufRead *.*.p call PollenDetectFiletype(expand("<afile>"))

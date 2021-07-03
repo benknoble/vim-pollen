@@ -7,9 +7,11 @@ function! PollenDetectFiletype(filename) abort
     return
   endif
 
-  " HACK: new file resets did_filetype()
-  " ignore old filetype, probably pascal or some junk
-  new | bdelete
+  " reset did_filetype() so that setf will work (see doautocmd below)
+  if did_filetype()
+    " HACK: new file resets did_filetype()
+    new | bdelete
+  endif
 
   " HACK: ignore conf (#lang line triggers it sometimes)
   " :view +/setf\ FALLBACK\ conf $VIMRUNTIME/filetype.vim
